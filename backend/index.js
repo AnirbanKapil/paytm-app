@@ -1,24 +1,19 @@
-import express from "express";
-import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
 
-const app = express();
+import { app } from "./src/app.js";
 
+import connectDB from "./src/db/index.js";
 
+dotenv.config({
+    path : "./.env"
+})
 
-
-
-app.use(cors({
-    origin : process.env.CORS_ORIGIN,
-    credentials : true
-}))
-
-app.use(express.json({limit : "16kb"}))
-
-app.use(express.urlencoded({extended:true,limit : "16kb"}))
-
-app.use(express.static("public"))
-
-app.use(cookieParser())
-
+connectDB()
+.then(()=>{
+    app.listen(3000,()=>{
+        console.log("Server is up and running on port 3000")
+    })
+})
+.catch((error)=> console.log("Connection failed",error))
 
 
