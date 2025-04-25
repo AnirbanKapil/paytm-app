@@ -27,7 +27,7 @@ import signUpRouter from "./routes/signup.routes.js"
 
 // routes decleration
 
-app.use("api/v1",signUpRouter)
+app.use("/api/v1",signUpRouter)
 
 
 
