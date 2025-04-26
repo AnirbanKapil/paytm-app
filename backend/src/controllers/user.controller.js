@@ -16,7 +16,7 @@ const registerUser = asyncHandler(async (req,res) => {
         firstname,
         lastname,
         password,
-        username
+        username : username.toLowerCase()
     })
     res.status(201).json({ message: "User registered successfully" });
 })
@@ -28,6 +28,7 @@ const loginUser = asyncHandler(async (req,res) => {
     if(!(username || password)){
         throw new Error("username and password are required")
     }
+
     
 })
 

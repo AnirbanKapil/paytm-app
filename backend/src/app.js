@@ -21,8 +21,7 @@ app.use(cookieParser())
 
 // routes import
 
-import signUpRouter from "./routes/signup.routes.js"
-import signInRouter from "./routes/signin.routes.js"
+import signUpRouter from "./routes/signup.routes.js";
 
 
 // routes decleration
