@@ -4,8 +4,8 @@ import { User } from "../models/user.model.js";
 
 
 const registerUser = asyncHandler(async (req,res) => {
-    const {firstname,lastname,password} = req.body
-    if([firstname,lastname,password].some((field)=> !field || field.trim() === "")){
+    const {firstname,lastname,password,username} = req.body
+    if([firstname,lastname,password,username].some((field)=> !field || field.trim() === "")){
         throw new Error("All fields must be filled");
     }
     const existedUser = await User.findOne({firstname,lastname}) 
@@ -15,9 +15,20 @@ const registerUser = asyncHandler(async (req,res) => {
     await User.create({
         firstname,
         lastname,
-        password
+        password,
+        username
     })
     res.status(201).json({ message: "User registered successfully" });
+})
+
+
+
+const loginUser = asyncHandler(async (req,res) => {
+    const {username,password} = req.body
+    if(!(username || password)){
+        throw new Error("username and password are required")
+    }
+    
 })
 
 
