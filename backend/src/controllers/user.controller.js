@@ -12,25 +12,32 @@ const registerUser = asyncHandler(async (req,res) => {
     if(existedUser){
         throw new Error("User already exist!")
     }
-    await User.create({
+    const user = await User.create({
         firstname,
         lastname,
         password,
         username : username.toLowerCase()
     })
-    res.status(201).json({ message: "User registered successfully" });
-})
 
-
-
-const loginUser = asyncHandler(async (req,res) => {
-    const {username,password} = req.body
-    if(!(username || password)){
-        throw new Error("username and password are required")
+    const createdUser = await User.findById(user._id).select("-password")
+    
+    if(!createdUser){
+        throw new Error("Error creating user")
     }
 
-    
+    res.status(201).json({ message: "User registered successfully",data : createdUser});
 })
+
+
+
+// const loginUser = asyncHandler(async (req,res) => {
+//     const {username,password} = req.body
+//     if(!(username || password)){
+//         throw new Error("username and password are required")
+//     }
+
+    
+// })
 
 
 export {registerUser};
