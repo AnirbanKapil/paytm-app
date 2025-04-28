@@ -3,6 +3,24 @@ import asyncHandler from "../utils/asyncHandler.js";
 import { User } from "../models/user.model.js";
 
 
+const generateAccessAndRefreshToken = async function (userId) {
+    try {
+      const user = await User.findById(userId)
+      const accessToken = await user.generateAccessToken()
+      const refreshToken = await user.generateRefreshToken()
+
+      user.refreshToken = refreshToken
+      user.save({validateBeforeSave : false})
+
+      return {accessToken , refreshToken}
+
+    } catch (error) {
+        throw new Error("Error generating access and refresh token")
+    }
+}
+
+
+
 const registerUser = asyncHandler(async (req,res) => {
     const {firstname,lastname,password,username} = req.body
     if([firstname,lastname,password,username].some((field)=> !field || field.trim() === "")){
@@ -30,14 +48,15 @@ const registerUser = asyncHandler(async (req,res) => {
 
 
 
-// const loginUser = asyncHandler(async (req,res) => {
-//     const {username,password} = req.body
-//     if(!(username || password)){
-//         throw new Error("username and password are required")
-//     }
+const loginUser = asyncHandler(async (req,res) => {
+    const {username,password} = req.body
+    if(!(username || password)){
+        throw new Error("username and password are required")
+    }
+    
 
     
-// })
+})
 
 
 export {registerUser};
