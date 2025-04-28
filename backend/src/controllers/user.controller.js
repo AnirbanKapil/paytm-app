@@ -26,7 +26,7 @@ const registerUser = asyncHandler(async (req,res) => {
     if([firstname,lastname,password,username].some((field)=> !field || field.trim() === "")){
         throw new Error("All fields must be filled");
     }
-    const existedUser = await User.findOne({firstname,lastname}) 
+    const existedUser = await User.findOne({username}) 
     if(existedUser){
         throw new Error("User already exist!")
     }
@@ -53,9 +53,40 @@ const loginUser = asyncHandler(async (req,res) => {
     if(!(username || password)){
         throw new Error("username and password are required")
     }
-    
+    const user = await User.findOne(user.username)
+    if(!user){
+        throw new Error("User not found")
+    }
+    const isPasswordValid = await user.isPasswordCorrect(password)
+    if(!isPasswordValid){
+        throw new Error("Invalid password")
+    }
+    const {accessToken,refreshToken} = await generateAccessAndRefreshToken(user._id)
 
+    if(!(accessToken || refreshToken)){
+        throw new Error("Error generating tokens")
+    }
+
+    const loggedInUser = await User.findOne(user._id).select("-password -refreshToken")
+
+    const options = {
+        httpOnly : true,
+        secure : true
+    }
+
+    return res.status(200)
+              .cookie("accessToken",accessToken,options)
+              .cookie("refreshToken",refreshToken,options)
+              .json({
+                data : loggedInUser,
+                message : "User loggedIn successfully"
+              })
     
+})
+
+
+const logoutUser = asyncHandler(async (req,res) => {
+     
 })
 
 
