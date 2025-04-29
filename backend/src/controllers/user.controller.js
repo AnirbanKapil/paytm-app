@@ -53,7 +53,9 @@ const loginUser = asyncHandler(async (req,res) => {
     if(!(username || password)){
         throw new Error("username and password are required")
     }
-    const user = await User.findOne(user.username)
+
+    const user = await User.findOne({username})
+
     if(!user){
         throw new Error("User not found")
     }
