@@ -117,7 +117,7 @@ const logoutUser = asyncHandler(async (req,res) => {
 const changePassword = asyncHandler(async (req,res) => {
     const {oldpassword,newpassword} = req.body
     
-    if(!(oldpassword || newpassword)){
+    if(!oldpassword?.trim() || !newpassword?.trim()){
         throw new Error("All fields are required")
     }
     
