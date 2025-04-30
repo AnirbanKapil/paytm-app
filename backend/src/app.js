@@ -25,6 +25,7 @@ import signUpRouter from "./routes/signup.routes.js";
 import signInRouter from "./routes/signin.routes.js"
 import signOutRouter from "./routes/signout.routes.js"
 import changePasswordRouter from "./routes/update.routes.js"
+import updateDetailsRouter from "./routes/update.routes.js"
 
 
 // routes decleration
@@ -33,4 +34,5 @@ app.use("/api/v1",signUpRouter)
 app.use("/api/v1",signInRouter)
 app.use("/api/v1",signOutRouter)
 app.use("/api/v1",changePasswordRouter)
+app.use("/api/v1",updateDetailsRouter)
 export {app};

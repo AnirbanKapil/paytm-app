@@ -137,4 +137,25 @@ const changePassword = asyncHandler(async (req,res) => {
 })
 
 
-export {registerUser,loginUser,logoutUser,changePassword};
+const updateUserDetail = asyncHandler(async (req,res) => {
+    const {firstname,lastname} = req.body
+    if(!(firstname || lastname)){
+        throw new Error("Required field is empty")
+    }
+    const user = await User.findByIdAndUpdate(req.user._id,{
+        $set : {
+            firstname,
+            lastname
+        }
+    },{
+        new : true
+    }).select("-password -refreshToken")
+    return res.status(201).json({
+        data : user,
+        message : "updated successfully"
+    })
+
+})
+
+
+export {registerUser,loginUser,logoutUser,changePassword,updateUserDetail};
