@@ -6,11 +6,15 @@ const userSchema = new mongoose.Schema(
     {
         firstname : {
             type : String,
-            required : true
+            required : true,
+            trim : true,
+            maxLength : 50
         },
         lastname : {
             type : String,
-            required : true
+            required : true,
+            trim : true,
+            maxLength : 50
         },
         password : {
             type : String,
@@ -18,7 +22,12 @@ const userSchema = new mongoose.Schema(
         },
         username : {
             type : String,
-            required : true
+            required : true,
+            unique : true,
+            trim : true,
+            lowercase : true,
+            maxLength : 30,
+            minLength : 3
         },
         refreshToken : {
             type : String

@@ -114,4 +114,27 @@ const logoutUser = asyncHandler(async (req,res) => {
 })
 
 
-export {registerUser,loginUser,logoutUser};
+const changePassword = asyncHandler(async (req,res) => {
+    const {oldpassword,newpassword} = req.body
+    
+    if(!(oldpassword || newpassword)){
+        throw new Error("All fields are required")
+    }
+    
+    const user = await User.findById(req.user?._id)
+    const isPasswordCorrect = await user.isPasswordCorrect(oldpassword)
+    
+    if(!isPasswordCorrect){
+        throw new Error("Incorrect old password")
+    }
+    
+    user.password = newpassword
+    await user.save({validateBeforeSave : false})
+    
+    return res.status(201).json({
+        message : "Password changed successfully"
+    })
+})
+
+
+export {registerUser,loginUser,logoutUser,changePassword};
