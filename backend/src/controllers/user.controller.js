@@ -158,4 +158,32 @@ const updateUserDetail = asyncHandler(async (req,res) => {
 })
 
 
-export {registerUser,loginUser,logoutUser,changePassword,updateUserDetail};
+const getUsers = asyncHandler( async (req,res) => {
+    const filter = req.query.filter || ""
+
+    const users = await User.find({
+        $or : [
+            {
+                firstname : {
+                    "$regex" : filter
+                }
+            },{
+                lastname : {
+                    "$regex" : filter
+                }
+            }
+        ]
+    })
+
+    return res.status(200).json({
+        Users : users.map((user)=>({
+            username : user.username,
+            firstname : user.firstname,
+            lastname : user.lastname
+        }
+        ))
+    })
+})
+
+
+export {registerUser,loginUser,logoutUser,changePassword,updateUserDetail,getUsers};
