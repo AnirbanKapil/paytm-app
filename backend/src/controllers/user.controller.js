@@ -1,6 +1,7 @@
 
 import asyncHandler from "../utils/asyncHandler.js";
 import { User } from "../models/user.model.js";
+import { Account } from "../models/account.model.js";
 
 
 const generateAccessAndRefreshToken = async function (userId) {
@@ -42,8 +43,17 @@ const registerUser = asyncHandler(async (req,res) => {
     if(!createdUser){
         throw new Error("Error creating user")
     }
+    const userId = createdUser?._id
 
-    res.status(201).json({ message: "User registered successfully",data : createdUser});
+    const account = await Account.create({
+        userId,
+        balance : 1 + Math.random() * 10000
+    })
+    
+    const balance = account.balance
+
+
+    res.status(201).json({ message: "User registered successfully",data : createdUser , balance : balance});
 })
 
 
