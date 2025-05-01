@@ -173,15 +173,11 @@ const getUsers = asyncHandler( async (req,res) => {
                 }
             }
         ]
-    })
+    }).select("-password -refreshToken" )
 
     return res.status(200).json({
-        Users : users.map((user)=>({
-            username : user.username,
-            firstname : user.firstname,
-            lastname : user.lastname
-        }
-        ))
+        data : users,
+        message : "Required users fetched"
     })
 })
 
