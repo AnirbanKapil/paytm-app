@@ -28,6 +28,7 @@ import changePasswordRouter from "./routes/update.routes.js"
 import updateDetailsRouter from "./routes/update.routes.js"
 import getAllUsersRouter from "./routes/getusers.routes.js"
 import checkBalanceRouter from "./routes/account.route.js"
+import amountTransferRouter from "./routes/account.route.js"
 
 
 // routes decleration
@@ -39,4 +40,5 @@ app.use("/api/v1",changePasswordRouter)
 app.use("/api/v1",updateDetailsRouter)
 app.use("/api/v1",getAllUsersRouter)
 app.use("/api/v1",checkBalanceRouter)
+app.use("/api/v1",amountTransferRouter)
 export {app};
