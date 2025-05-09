@@ -1,12 +1,12 @@
-// src/pages/SignupPage.jsx
 
+import { Link } from "react-router-dom";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 
 const SignupPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-purple-300 p-6">
+    <div className="min-h-1/2 flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 p-28">
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader>
           <CardTitle className="text-2xl text-center">Create an Account</CardTitle>
@@ -23,6 +23,11 @@ const SignupPage = () => {
             <Button type="submit" className="mt-4 w-full">
               Sign Up
             </Button>
+            <div className="flex justify-center">
+             <h3 className="text-center font-extralight">Already have an account ??</h3>
+             <Link className="mx-1" to="/signin">SignIn</Link>
+            </div>
+            
           </form>
         </CardContent>
       </Card>

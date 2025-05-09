@@ -4,13 +4,13 @@ import { CreditCard, Send, LogIn, UserPlus} from 'lucide-react';
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 p-6">
+    <div className="min-h-1/2 flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 p-28">
       <header className="text-3xl font-bold text-blue-900 mb-8">
-        PayQuick
+        QuickPay
       </header>
 
       <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md text-center">
-        <h1 className="text-2xl font-semibold mb-4">Welcome to PayQuick!</h1>
+        <h1 className="text-2xl font-semibold mb-4">Welcome to QuickPay!</h1>
         <p className="text-gray-600 mb-6">
           Send and receive payments instantly, securely, and easily.
         </p>
@@ -34,9 +34,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <footer className="text-sm text-gray-500 mt-8">
-        © 2025 PayQuick. All rights reserved.
-      </footer>
+     
     </div>
   );
 };
