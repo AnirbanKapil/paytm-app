@@ -3,8 +3,28 @@ import { Link } from "react-router-dom";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { useState } from "react";
+import axios from "axios"
 
 const SignupPage = () => {
+
+  const [firstName,setFirstName] = useState("")
+  const [lastName,setLastName] = useState("")
+  const [userName,setUserName] = useState("")
+  const [password,setPassword] = useState("")
+  
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(firstName,lastName,userName,password) 
+    axios.post("http://localhost:3000/api/v1/signup",{
+         firstName,
+         lastName,
+         userName,
+         password
+     })
+  }
+  
+  
   return (
     <div className="min-h-1/2 flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 p-28">
       <Card className="w-full max-w-md shadow-xl">
@@ -15,12 +35,12 @@ const SignupPage = () => {
 
         <CardContent>
           <form className="flex flex-col gap-4">
-            <Input type="text" placeholder="First Name" required />
-            <Input type="text" placeholder="Last Name" required />
-            <Input type="text" placeholder="Username" required />
-            <Input type="password" placeholder="Password" required />
+            <Input type="text" placeholder="First Name" value={firstName} onChange={(e)=> setFirstName(e.target.value)} required />
+            <Input type="text" placeholder="Last Name" value={lastName} onChange={(e)=> setLastName(e.target.value)} required />
+            <Input type="text" placeholder="Username" value={userName} onChange={(e)=> setUserName(e.target.value)} required />
+            <Input type="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)} required />
 
-            <Button type="submit" className="mt-4 w-full">
+            <Button onClick={handleSubmit} type="submit" className="mt-4 w-full">
               Sign Up
             </Button>
             <div className="flex justify-center">

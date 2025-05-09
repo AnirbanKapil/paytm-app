@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button"; 
 import { CreditCard, Send, LogIn, UserPlus} from 'lucide-react'; 
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
@@ -14,20 +15,27 @@ const HomePage = () => {
         <p className="text-gray-600 mb-6">
           Send and receive payments instantly, securely, and easily.
         </p>
-
+         
         <div className="flex flex-col gap-4">
+
+          <Link to={"/dashboard"}>
           <Button className="flex items-center justify-center gap-2 w-full">
             <Send size={20} /> Send Money
           </Button>
-
+          </Link> 
+          
+          <Link to={"/signup"}> 
           <Button className="flex items-center justify-center gap-2 w-full">
             <UserPlus size={20} /> SignUp
           </Button>
+          </Link>
 
+          <Link to={"/signin"}>
           <Button className="flex items-center justify-center gap-2 w-full">
             <LogIn size={20} /> SignIn
           </Button>
-
+          </Link>
+          
           <Button variant="outline" className="flex items-center justify-center gap-2 w-full">
             <CreditCard size={20} /> View Transactions
           </Button>

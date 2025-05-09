@@ -1,8 +1,15 @@
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { useState } from "react";
 
 function Signin() {
+  
+  const [userName,setUserName] = useState("")
+  const [password,setPassword] = useState("")
+
+  
+
   return (
     <div className="min-h-1/2 flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 p-28">
       <Card className="w-full max-w-md shadow-xl">
@@ -13,10 +20,10 @@ function Signin() {
 
         <CardContent>
           <form className="flex flex-col gap-4">
-            <Input type="text" placeholder="Username" required />
-            <Input type="password" placeholder="Password" required />
+            <Input value = {userName} onChange = {(e)=> setUserName(e.target.value)} type="text" placeholder="Username" required />
+            <Input value = {password} onChange = {(e)=> setPassword(e.target.value)} type="password" placeholder="Password" required />
 
-            <Button type="submit" className="mt-4 w-full">
+            <Button  type="submit" className="mt-4 w-full">
               Sign In
             </Button>
           </form>
