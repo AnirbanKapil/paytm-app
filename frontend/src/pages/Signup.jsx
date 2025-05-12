@@ -8,18 +8,18 @@ import axios from "axios"
 
 const SignupPage = () => {
 
-  const [firstName,setFirstName] = useState("")
-  const [lastName,setLastName] = useState("")
-  const [userName,setUserName] = useState("")
+  const [firstname,setFirstName] = useState("")
+  const [lastname,setLastName] = useState("")
+  const [username,setUserName] = useState("")
   const [password,setPassword] = useState("")
   
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(firstName,lastName,userName,password) 
+    console.log(firstname,lastname,username,password) 
     axios.post("http://localhost:3000/api/v1/signup",{
-         firstName,
-         lastName,
-         userName,
+         firstname,
+         lastname,
+         username,
          password
      })
   }
@@ -35,9 +35,9 @@ const SignupPage = () => {
 
         <CardContent>
           <form className="flex flex-col gap-4">
-            <Input type="text" placeholder="First Name" value={firstName} onChange={(e)=> setFirstName(e.target.value)} required />
-            <Input type="text" placeholder="Last Name" value={lastName} onChange={(e)=> setLastName(e.target.value)} required />
-            <Input type="text" placeholder="Username" value={userName} onChange={(e)=> setUserName(e.target.value)} required />
+            <Input type="text" placeholder="First Name" value={firstname} onChange={(e)=> setFirstName(e.target.value)} required />
+            <Input type="text" placeholder="Last Name" value={lastname} onChange={(e)=> setLastName(e.target.value)} required />
+            <Input type="text" placeholder="Username" value={username} onChange={(e)=> setUserName(e.target.value)} required />
             <Input type="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)} required />
 
             <Button onClick={handleSubmit} type="submit" className="mt-4 w-full">
