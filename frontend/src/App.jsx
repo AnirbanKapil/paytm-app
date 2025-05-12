@@ -8,13 +8,15 @@ import Dashboard from './pages/Dashboard'
 import SendMoney from './pages/SendMoney'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-
+import {Provider} from "react-redux"
+import store from "../src/utils/appStore"
 
 function App() {
   return (
     <>
      
      <BrowserRouter>
+       <Provider store={store}>
        <Header />
        <Routes>
          <Route path='/' element ={<Home />}/>
@@ -23,6 +25,7 @@ function App() {
          <Route path='/dashboard' element = {<Dashboard />} />
          <Route path='/send' element = {<SendMoney />} />
        </Routes>
+       </Provider>
      </BrowserRouter>
        <Footer />
     </>
