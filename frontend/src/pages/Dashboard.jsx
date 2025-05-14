@@ -11,10 +11,8 @@ function Dashboard() {
 
   const handleClick =  (e) => {
     e.preventDefault()
-    
       axios.get("http://localhost:3000/api/v1/getusers")
       .then((response)=> setUser(response.data.data))
-       console.log(user)
   } 
 
   return (
