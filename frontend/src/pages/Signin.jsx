@@ -3,18 +3,25 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/slices/userSlice";
 
 function Signin() {
   
   const [username,setUserName] = useState("")
   const [password,setPassword] = useState("")
 
-  const handleSubmit = (e) => {
+  const dispatch = useDispatch()
+
+  const handleSubmit = async (e) => {
      e.preventDefault() 
-    axios.post("http://localhost:3000/api/v1/signin",{
+    const response = await axios.post("http://localhost:3000/api/v1/signin",{
       username,
       password
-    })
+    },{ withCredentials: true })
+    dispatch(addUser(response?.data))
+    setPassword("")
+    setUserName("")
   }
 
   return (

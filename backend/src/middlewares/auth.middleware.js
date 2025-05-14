@@ -5,9 +5,9 @@ import asyncHandler from "../utils/asyncHandler.js"
 
 const verifyJWT = asyncHandler(async (req,res,next) => {
     try {
-        const token = req.cookies?.accessToken || req?.headers("Authorization")?.replace("Bearer ","")
+        const token = req.cookies?.accessToken || req.headers["authorization"]?.replace("Bearer ","")
         if(!token){
-            throw new Error("unauthorized request")
+            throw new Error("unauthorized request : no token")
         }
         const decodedToken = await jwt.verify(token,process.env.ACCESS_TOKEN_SECRET)
         const user = await User.findById(decodedToken?._id).select("-password -refreshToken")

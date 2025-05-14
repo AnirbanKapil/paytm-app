@@ -13,14 +13,18 @@ const SignupPage = () => {
   const [username,setUserName] = useState("")
   const [password,setPassword] = useState("")
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    axios.post("http://localhost:3000/api/v1/signup",{
+    await axios.post("http://localhost:3000/api/v1/signup",{
          firstname,
          lastname,
          username,
          password
      })
+     setFirstName("")
+     setLastName("")
+     setUserName("")
+     setPassword("")
   }
   
   
