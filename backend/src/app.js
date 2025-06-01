@@ -33,6 +33,7 @@ import checkBalanceRouter from "./routes/account.route.js"
 import amountTransferRouter from "./routes/account.route.js"
 
 
+
 // routes decleration
 
 app.use("/api/v1",signUpRouter)

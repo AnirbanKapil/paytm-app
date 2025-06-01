@@ -192,4 +192,20 @@ const getUsers = asyncHandler( async (req,res) => {
 })
 
 
-export {registerUser,loginUser,logoutUser,changePassword,updateUserDetail,getUsers};
+const getUserById =asyncHandler ( async(req,res) => {
+    
+    const userId = req.params.id
+    
+    if(!userId){
+        throw new Error("UserId not found")
+    }
+    const user = await User.findById(userId).select("-password -refreshToken")
+
+    return res.status(200).json({
+        data : user,
+        message : "Required user fetched"
+    })
+
+})
+
+export {registerUser,loginUser,logoutUser,changePassword,updateUserDetail,getUsers,getUserById};

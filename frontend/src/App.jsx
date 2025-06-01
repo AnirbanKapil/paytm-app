@@ -10,6 +10,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import {Provider} from "react-redux"
 import store from "../src/utils/appStore"
+import UserProfile from './pages/UserProfile'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
          <Route path='/signin' element = {<Signin />} />
          <Route path='/dashboard' element = {<Dashboard />} />
          <Route path='/send' element = {<SendMoney />} />
+         <Route path='/profile/:id' element = {<UserProfile />}/>
        </Routes>
        </Provider>
      </BrowserRouter>

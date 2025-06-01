@@ -8,12 +8,14 @@ import axios from "axios";
 function Dashboard() {
 
   const [user,setUser] = useState([])
+  const [filter,setFilter] = useState("")
 
-  const handleClick =  (e) => {
-    e.preventDefault()
-      axios.get("http://localhost:3000/api/v1/getusers")
+  useEffect(()=>{
+     axios.get(`http://localhost:3000/api/v1/getusers?filter=${filter}`)
       .then((response)=> setUser(response.data.data))
-  } 
+
+  },[filter])
+      
 
   return (
     <>
@@ -21,14 +23,12 @@ function Dashboard() {
       <h1 className="text-2xl font-semibold mb-4"></h1>
       <div className="flex gap-4 items-center">
         <Input
+          onChange= {(e)=> setFilter(e.target.value)}
           type="text"
-          placeholder="Full Name"
+          placeholder="search user"
           className="flex-1"
         />
-        <Button variant="default" size="sm" onClick={handleClick}>
-          <Search className="h-4 w-4 mr-2" />
-          Search
-        </Button>
+        
       </div>
       <div>
         <ActiveUsers users={user}/>
