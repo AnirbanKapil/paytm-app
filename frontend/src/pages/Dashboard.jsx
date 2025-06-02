@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+
 import { Search } from "lucide-react";
 import ActiveUsers from "../components/ActiveUsers/ActiveUsers";
 import { useEffect, useState } from "react";
@@ -20,7 +20,7 @@ function Dashboard() {
   return (
     <>
     <div className="p-6 bg-white rounded-2xl shadow-md max-w-3xl mx-auto mt-10">
-      <h1 className="text-2xl font-semibold mb-4"></h1>
+
       <div className="flex gap-4 items-center">
         <Input
           onChange= {(e)=> setFilter(e.target.value)}

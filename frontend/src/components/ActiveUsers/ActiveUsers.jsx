@@ -1,7 +1,6 @@
-import React from 'react'
+
 import { Card, CardContent } from "@/components/ui/card";
 import { User } from "lucide-react";
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 

@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer'
 import {Provider} from "react-redux"
 import store from "../src/utils/appStore"
 import UserProfile from './pages/UserProfile'
+import AmountTransfer from './pages/AmountTransfer'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
          <Route path='/dashboard' element = {<Dashboard />} />
          <Route path='/send' element = {<SendMoney />} />
          <Route path='/profile/:id' element = {<UserProfile />}/>
+         <Route path='/amounttransfer' element = {<AmountTransfer />}/>
        </Routes>
        </Provider>
      </BrowserRouter>
