@@ -20,7 +20,7 @@ const checkBalance = asyncHandler(async (req,res) => {
 const transferAmount = asyncHandler(async (req,res) => {
     
     const session = await mongoose.startSession()
-    
+   
     try {
 
         session.startTransaction()
@@ -28,16 +28,16 @@ const transferAmount = asyncHandler(async (req,res) => {
         const {amount,receiver} = req.body
     
         const senderAccount = await Account.findOne({userId : req.user._id}).session(session)
-        
+       
         if(!senderAccount){
             throw new Error("Error in the account")
         }
         if(senderAccount.balance < amount){
             throw new Error("Insufficient balance")
         }
-
-        const receiverAccount = await Account.findOne({userId : receiver}).session(session)
         
+        const receiverAccount = await Account.findOne({userId : receiver}).session(session)
+
         if(!receiverAccount){
             await session.abortTransaction()
             throw new Error("Unable to find the account")

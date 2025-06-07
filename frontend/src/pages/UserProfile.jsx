@@ -11,13 +11,14 @@ function UserProfile() {
   const [user,setUser] = useState({
     username : "",
     firstname : "",
-    lastname : ""
+    lastname : "",
+    id : ""
   })
 
   const getUserProfile = async () => {
       const res = await axios.get(`http://localhost:3000/api/v1/getuserid/${resId.id}`) 
       const data = res.data.data
-      setUser({username : data.username,firstname : data.firstname,lastname : data.lastname})
+      setUser({username : data.username,firstname : data.firstname,lastname : data.lastname, id : data._id})
     }
   
   useEffect(()=>{
@@ -33,7 +34,7 @@ function UserProfile() {
       <h1 className="text-2xl font-bold"> Last Name - {user.lastname}</h1>
       <h2 className="font-extralight">Username - {user.username}</h2>
       </div>
-      <Link to="/amounttransfer"><Button className="bg-blue-400 p-2 m-2 rounded-lg">Send Money</Button></Link>
+      <Link to={`/amounttransfer?id=${user.id}&name=${user.firstname}`}><Button className="bg-blue-400 p-2 m-2 rounded-lg">Send Money</Button></Link>
     </div>
   )
 }
