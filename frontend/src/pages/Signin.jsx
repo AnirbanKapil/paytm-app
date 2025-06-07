@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/slices/userSlice";
+import toast from "react-hot-toast";
 
 function Signin() {
   
@@ -19,6 +20,7 @@ function Signin() {
       username,
       password
     },{ withCredentials: true })
+    toast.success('Signed In Successfully')
     dispatch(addUser(response?.data))
     setPassword("")
     setUserName("")

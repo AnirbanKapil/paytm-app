@@ -8,6 +8,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { removeUser } from "../../utils/slices/userSlice";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 
 
@@ -20,6 +21,7 @@ const Header = () => {
   const handleClick = async (e) => {
     e.preventDefault()
     await axios.post("http://localhost:3000/api/v1/signout",{},{withCredentials: true})
+    toast.success('LoggedOut Successfully !!')
     dispatch(removeUser())
   }
 

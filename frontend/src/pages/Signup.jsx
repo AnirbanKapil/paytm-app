@@ -5,6 +5,7 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { useState } from "react";
 import axios from "axios"
+import toast from "react-hot-toast";
 
 const SignupPage = () => {
 
@@ -21,6 +22,7 @@ const SignupPage = () => {
          username,
          password
      })
+     toast.success('User created Successfully!')
      setFirstName("")
      setLastName("")
      setUserName("")
