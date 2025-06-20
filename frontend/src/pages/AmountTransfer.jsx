@@ -22,11 +22,14 @@ function AmountTransfer() {
    },[])
 
    return (
-    <div className="p-6 bg-white rounded-2xl shadow-md max-w-3xl mx-auto mt-32">
+    <div className="flex flex-col justify-center items-center min-h-screen">
+      <h1>Your current balance 500</h1>
+    <div className="p-6 bg-white rounded-2xl shadow-md max-w-3xl mx-auto mt-20">
        <h1>Sending Money To  , {name}</h1>
        <h3>Amount in Rs</h3>
       <input type="number" placeholder="Enter Amount" value={amount} onChange={(e)=>{setAmount(e.target.value)}}/>
       <Button className="bg-blue-400 p-2 m-2 rounded-lg" onClick={handleSendMoney}>Send Money</Button>
+    </div>
     </div>
   )
 }
