@@ -170,8 +170,9 @@ const updateUserDetail = asyncHandler(async (req,res) => {
 
 const getUsers = asyncHandler( async (req,res) => {
     const filter = req.query.filter || ""
-
+    const currentUserId = req.user.id 
     const users = await User.find({
+    _id: { $ne: currentUserId },    
         $or : [
             {
                 firstname : {
